@@ -16,14 +16,14 @@ export default class CEd {
       lineNumbers: true
     });
     this.editor.on('changes', function () {
-      let html = this.prepareHTML();
+      let html = this.prepareHTML(this.editor.getValue());
       if (html === this.block.html) return;
       console.log(this.content);
     }.bind(this));
   }
 
-  prepareHTML () {
-    return '<pre>' + encodeHTML(this.editor.getValue()) + '</pre>';
+  prepareHTML (code) {
+    return '<pre>' + encodeHTML(code) + '</pre>';
   }
 
   set content (block) {
@@ -34,7 +34,8 @@ export default class CEd {
   }
 
   get content () {
-    this.block.html = this.prepareHTML();
+    this.block.text = this.editor.getValue();
+    this.block.html = this.prepareHTML(this.block.text);
     return this.block;
   }
 };
