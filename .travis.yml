@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 - '4.2'
+before_deploy: ./node_modules/.bin/webpack
 deploy:
   provider: npm
   email: henri.bergius@iki.fi
