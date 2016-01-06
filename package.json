@@ -1,6 +1,6 @@
 {
   "name": "@the-grid/ced",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Code Editor for Ed",
   "main": "index.js",
   "scripts": {
