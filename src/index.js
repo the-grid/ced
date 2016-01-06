@@ -7,6 +7,7 @@ export default class CEd {
     if (!options) options = {};
     if (!options.container) options.container = document.getElementsByTagName('textarea')[0];
     this.container = options.container;
+    this.block = null;
   }
 
   init () {
@@ -14,17 +15,25 @@ export default class CEd {
       lineNumbers: true
     });
     this.editor.on('changes', function () {
+      let html = this.prepareHTML();
+      if (html === this.block.html) return;
       console.log(this.content);
     }.bind(this));
   }
 
+  prepareHTML () {
+    return '<pre>' + this.editor.getValue() + '</pre>';
+  }
+
   set content (block) {
+    this.block = block;
     let el = document.createElement('div');
-    el.innerHTML = block.html;
+    el.innerHTML = this.block.html;
     this.editor.setValue(el.textContent);
   }
 
   get content () {
-    return this.editor.getValue();
+    this.block.html = this.prepareHTML();
+    return this.block;
   }
 };
