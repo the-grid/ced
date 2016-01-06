@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-  - '4.2'
+- '4.2'
+deploy:
+  provider: npm
+  email: henri.bergius@iki.fi
+  api_key:
+    secure: wCA5++AAS2x5JrwHA4PQ43BKZ/wHGdRVZSLeTLRf7sILU/eisY1p3+il0iqsgGajJElA4eInXB4jJ/Ew3R1hOOLMpIogzp+MsZIyROVOEWGJSSUwZcrhP6rpfMaCK/7/3GZGmYsI5kA1s/RrwAc6wfdAU/J7PHsHsbJkfhnzShH/WnESfs1SilLyMlt6gMOXxwmzHVhlftYIVhJoGQ6dGdpseOXtN/Lf9iB6KI+22R67ZYtFJqm2OUtoTRhw43fh3dnJLNhQRUsTKoRRwGwivgMZPY7fMRp9b+Une8yrSnltLT4B+uaOmrEPQhSojj05r80BLkm4mH9bCts6p7IPZyP47TRuP4FB6Pll6eRawoydAXDDu7duiDc8GOZteXoep06PQygJTybjEmOKziak5cGz5KI2vYyYTEE+TVn3O1dlS2prHA2ZWNyne8MyQQNaguY5KCB+yCzsZ9NZX6FJDN9anx99niga9pe95++CSdKpQ2OcAUQj3igQaOLb3GQrDhvk56ACkhBnNWSyOdlWSq70djklOMrt35MnYOVX6ORR1Uf1Ko81vlG8GQgArOZK9Rsfnfk3hutk3WMgNjNQIeNHhpjg2+o8uG4JTcEDdMGipUFFxP8+WSzdXFMh0AHSv/pAgCxWJR11tyqzf9EDNT/iPnFU8ZaiwSRrv7E2Ix0=
+  on:
+    tags: true
+    repo: the-grid/ced
