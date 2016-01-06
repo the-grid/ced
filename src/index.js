@@ -13,11 +13,18 @@ export default class CEd {
     this.editor = CodeMirror.fromTextArea(this.container, {
       lineNumbers: true
     });
+    this.editor.on('changes', function () {
+      console.log(this.content);
+    }.bind(this));
   }
 
   set content (block) {
+    let el = document.createElement('div');
+    el.innerHTML = block.html;
+    this.editor.setValue(el.textContent);
   }
 
   get content () {
+    return this.editor.getValue();
   }
 };
