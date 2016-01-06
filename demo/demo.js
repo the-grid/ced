@@ -11,6 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
   ced.content = {
     type: 'code',
     id: 'd4be36b0-d18e-438c-8564-9ae79963b5e4',
-    html: '<pre>let foo = \'bar\';</pre>'
+    html: '<pre>let foo = \'bar\';\n&lt;blink&gt;Hello&lt;/blink&gt;</pre>'
   };
 });

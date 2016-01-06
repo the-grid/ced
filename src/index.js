@@ -1,4 +1,5 @@
 import * as CodeMirror from 'codemirror';
+import {encodeHTML,decodeHTML} from 'entities';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/monokai.css';
 
@@ -22,14 +23,14 @@ export default class CEd {
   }
 
   prepareHTML () {
-    return '<pre>' + this.editor.getValue() + '</pre>';
+    return '<pre>' + encodeHTML(this.editor.getValue()) + '</pre>';
   }
 
   set content (block) {
     this.block = block;
     let el = document.createElement('div');
     el.innerHTML = this.block.html;
-    this.editor.setValue(el.textContent);
+    this.editor.setValue(decodeHTML(el.textContent));
   }
 
   get content () {
