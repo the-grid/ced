@@ -9,6 +9,7 @@ export default class CEd {
     if (!options.container) options.container = document.getElementsByTagName('textarea')[0];
     this.container = options.container;
     this.block = null;
+    this.onchanged = function () {};
   }
 
   init () {
@@ -18,7 +19,7 @@ export default class CEd {
     this.editor.on('changes', function () {
       let html = this.prepareHTML(this.editor.getValue());
       if (html === this.block.html) return;
-      console.log(this.content);
+      this.onchanged(this.content);
     }.bind(this));
   }
 
