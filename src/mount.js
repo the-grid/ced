@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function () {
       case 'getblock':
         send('setblock', ced.content)
         break
+      case 'focus':
+        ced.editor.focus()
+        break
     }
   })
 })
