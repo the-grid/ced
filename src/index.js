@@ -24,7 +24,7 @@ export default class CEd {
   }
 
   prepareHTML (code) {
-    return '<pre>' + encodeHTML(code) + '</pre>'
+    return '<pre><code>' + encodeHTML(code) + '</code></pre>'
   }
 
   set content (block) {
