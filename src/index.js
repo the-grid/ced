@@ -18,7 +18,9 @@ export default class CEd {
   constructor (options) {
     if (!options) options = {}
     if (!options.container) options.container = document.getElementsByTagName('textarea')[0]
+    if (!options.selector) options.selector = document.getElementsByTagName('select')[0]
     this.container = options.container
+    this.selector = options.selector
     this.block = null
     this.onchanged = function () {}
   }
@@ -32,6 +34,22 @@ export default class CEd {
       if (html === this.block.html) return
       this.onchanged(this.content)
     }.bind(this))
+
+    if (!this.selector) return
+
+    this.selector.addEventListener('change', function () {
+      this.mode = this.selector.value
+      let html = this.prepareHTML(this.editor.getValue(), this.editor.getOption('mode'))
+      if (html === this.block.html) return
+      this.onchanged(this.content)
+    }.bind(this))
+    let modes = Object.keys(CodeMirror.mimeModes)
+    for (var i=0; i<modes.length;i++) {
+      let option = document.createElement('option')
+      option.value = modes[i]
+      option.innerText = modes[i]
+      this.selector.appendChild(option)
+    }
   }
 
   mimeToMode (mime) {
@@ -47,6 +65,8 @@ export default class CEd {
 
   set mode (mode) {
     this.editor.setOption('mode', mode)
+    if (!this.block.metadata) this.block.metadata = {}
+    this.block.metadata.programmingLanguage = mode
   }
 
   set content (block) {
@@ -56,6 +76,7 @@ export default class CEd {
     this.editor.setValue(decodeHTML(el.textContent))
     if (this.block.metadata && this.block.metadata.programmingLanguage) {
       this.mode = this.block.metadata.programmingLanguage
+      if (this.selector) this.selector.value = this.block.metadata.programmingLanguage
     }
   }
 
