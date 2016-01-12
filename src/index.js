@@ -3,6 +3,17 @@ import {encodeHTML,decodeHTML} from 'entities'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/monokai.css'
 
+// Modes needed for syntax highlighting
+import 'codemirror/mode/clike/clike'
+import 'codemirror/mode/coffeescript/coffeescript'
+import 'codemirror/mode/htmlmixed/htmlmixed'
+import 'codemirror/mode/javascript/javascript'
+import 'codemirror/mode/php/php'
+import 'codemirror/mode/python/python'
+import 'codemirror/mode/shell/shell'
+import 'codemirror/mode/swift/swift'
+import 'codemirror/mode/yaml/yaml'
+
 export default class CEd {
   constructor (options) {
     if (!options) options = {}
@@ -27,11 +38,18 @@ export default class CEd {
     return '<pre><code>' + encodeHTML(code) + '</code></pre>'
   }
 
+  set mode (mode) {
+    this.editor.setOption('mode', mode);
+  }
+
   set content (block) {
     this.block = block
     let el = document.createElement('div')
     el.innerHTML = this.block.html
     this.editor.setValue(decodeHTML(el.textContent))
+    if (this.block.metadata && this.block.metadata.programmingLanguage) {
+      this.mode = this.block.metadata.programmingLanguage
+    }
   }
 
   get content () {
