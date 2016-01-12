@@ -28,18 +28,18 @@ export default class CEd {
       lineNumbers: true
     })
     this.editor.on('changes', function () {
-      let html = this.prepareHTML(this.editor.getValue())
+      let html = this.prepareHTML(this.editor.getValue(), this.editor.getOption('mode'))
       if (html === this.block.html) return
       this.onchanged(this.content)
     }.bind(this))
   }
 
-  prepareHTML (code) {
-    return '<pre><code>' + encodeHTML(code) + '</code></pre>'
+  prepareHTML (code, mode) {
+    return '<pre><code class="language-' + mode + '">' + encodeHTML(code) + '</code></pre>'
   }
 
   set mode (mode) {
-    this.editor.setOption('mode', mode);
+    this.editor.setOption('mode', mode)
   }
 
   set content (block) {
@@ -54,7 +54,7 @@ export default class CEd {
 
   get content () {
     this.block.text = this.editor.getValue()
-    this.block.html = this.prepareHTML(this.block.text)
+    this.block.html = this.prepareHTML(this.block.text, this.editor.getOption('mode'))
     return this.block
   }
 }
