@@ -34,8 +34,15 @@ export default class CEd {
     }.bind(this))
   }
 
-  prepareHTML (code, mode) {
-    return '<pre><code class="language-' + mode + '">' + encodeHTML(code) + '</code></pre>'
+  mimeToMode (mime) {
+    let mode = CodeMirror.mimeModes[mime]
+    if (!mode) return ''
+    if (typeof mode === 'string') return 'language-' + mode
+    return 'language-' + mode.name
+  }
+
+  prepareHTML (code, mime) {
+    return '<pre><code class="' + this.mimeToMode(mime) + '">' + encodeHTML(code) + '</code></pre>'
   }
 
   set mode (mode) {
