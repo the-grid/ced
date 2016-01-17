@@ -71,6 +71,7 @@ export default class CEd {
 
   set content (block) {
     this.block = block
+    this.id = block.id
     let el = document.createElement('div')
     el.innerHTML = this.block.html
     this.editor.setValue(decodeHTML(el.textContent))

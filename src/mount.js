@@ -6,9 +6,10 @@ function setup () {
   return ced
 }
 
-function send (topic, payload) {
+function send (topic, id, payload) {
   window.parent.postMessage({
     topic: topic,
+    id: id,
     payload: payload
   }, '*')
 }
