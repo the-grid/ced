@@ -16,8 +16,14 @@ function send (topic, id, payload) {
 
 document.addEventListener('DOMContentLoaded', function () {
   let ced = setup()
+  let lastHeight = 0
   ced.onchanged = function (block) {
-    send('changed', block)
+    send('changed', ced.id, block)
+    let height = ced.editor.getScrollInfo().height + 25
+    if (height !== lastHeight) {
+      send('height', ced.id, height)
+      lastHeight = height
+    }
   }
   window.addEventListener('message', function (message) {
     switch (message.data.topic) {
