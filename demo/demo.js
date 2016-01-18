@@ -16,9 +16,19 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   // Receiving content from the editor
   window.addEventListener('message', function (message) {
+    let iframe = document.getElementById('demo');
     let preview = document.getElementById('preview');
-    preview.innerHTML = message.data.payload.html;
-    let previewLang = document.getElementById('preview_language');
-    previewLang.innerHTML = message.data.payload.metadata.programmingLanguage;
+
+    switch (message.data.topic) {
+      case 'changed':
+        preview.innerHTML = message.data.payload.html
+        let previewLang = document.getElementById('preview_language')
+        previewLang.innerHTML = message.data.payload.metadata.programmingLanguage
+        break
+      case 'height':
+        iframe.height = message.data.payload
+      default:
+        break
+    }
   });
 });

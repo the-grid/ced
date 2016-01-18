@@ -27,7 +27,8 @@ export default class CEd {
 
   init () {
     this.editor = CodeMirror.fromTextArea(this.container, {
-      lineNumbers: true
+      lineNumbers: true,
+      viewportMargin: Infinity
     })
     this.editor.on('changes', function () {
       let html = this.prepareHTML(this.editor.getValue(), this.editor.getOption('mode'))
@@ -71,6 +72,7 @@ export default class CEd {
 
   set content (block) {
     this.block = block
+    this.id = block.id
     let el = document.createElement('div')
     el.innerHTML = this.block.html
     this.editor.setValue(decodeHTML(el.textContent))
