@@ -6,6 +6,7 @@ import 'codemirror/theme/monokai.css'
 // Modes needed for syntax highlighting
 import 'codemirror/mode/clike/clike'
 import 'codemirror/mode/coffeescript/coffeescript'
+import 'codemirror/mode/elm/elm'
 import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/php/php'

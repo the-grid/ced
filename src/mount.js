@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let lastHeight = 0
   ced.onchanged = function (block) {
     send('changed', ced.id, block)
-    let height = ced.editor.getScrollInfo().height + 25
+    let height = ced.editor.getScrollInfo().height + 40
     if (height !== lastHeight) {
       send('height', ced.id, height)
       lastHeight = height
