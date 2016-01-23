@@ -4,10 +4,12 @@ var path = require('path');
 module.exports = {
   entry: {
     demo: './demo/demo.js',
-    mount: './src/mount.js',
-    ced: ['./src/index.js'],
+    mount: './src/mount.js'
   },
-  plugins: [],
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
+  ],
+  devtool: 'source-map',
   output: {
     path: './lib',
     filename: '[name].js',
