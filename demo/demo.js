@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
           programmingLanguage: 'text/javascript'
         },
         id: 'd4be36b0-d18e-438c-8564-9ae79963b5e4',
-        html: '<pre>let foo = \'bar\';\n&lt;blink&gt;Hello&period;&period;&period;&lt;/blink&gt;</pre>'
+        html: '<pre>&amp;amp;\nlet foo = \'bar\';\n&lt;blink&gt;Hello&period;&period;&period;&lt;/blink&gt;</pre>'
       }
     }, '*');
   });

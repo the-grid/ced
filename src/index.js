@@ -79,7 +79,7 @@ export default class CEd {
     this.id = block.id
     let el = document.createElement('div')
     el.innerHTML = this.block.html
-    this.editor.setValue(decode(el.textContent))
+    this.editor.setValue(el.textContent)
     if (this.block.metadata && this.block.metadata.programmingLanguage) {
       this.mode = this.block.metadata.programmingLanguage
       if (this.selector) this.selector.value = this.block.metadata.programmingLanguage
