@@ -18,9 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('message', function (message) {
     let iframe = document.getElementById('demo');
     let preview = document.getElementById('preview');
+    let block = document.getElementById('block');
 
     switch (message.data.topic) {
       case 'changed':
+        block.textContent = JSON.stringify(message.data.payload, null, 2)
         preview.innerHTML = message.data.payload.html
         let previewLang = document.getElementById('preview_language')
         previewLang.innerHTML = message.data.payload.metadata.programmingLanguage
