@@ -1,5 +1,7 @@
+import {encode} from 'he'
+encode.options.useNamedReferences = true
+
 import * as CodeMirror from 'codemirror'
-import {encodeHTML,decodeHTML} from 'entities'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/monokai.css'
 
@@ -14,6 +16,7 @@ import 'codemirror/mode/python/python'
 import 'codemirror/mode/shell/shell'
 import 'codemirror/mode/swift/swift'
 import 'codemirror/mode/yaml/yaml'
+
 
 export default class CEd {
   constructor (options) {
@@ -62,7 +65,7 @@ export default class CEd {
   }
 
   prepareHTML (code, mime) {
-    return '<pre><code class="' + this.mimeToMode(mime) + '">' + encodeHTML(code) + '</code></pre>'
+    return '<pre><code class="' + this.mimeToMode(mime) + '">' + encode(code) + '</code></pre>'
   }
 
   set mode (mode) {
@@ -76,7 +79,7 @@ export default class CEd {
     this.id = block.id
     let el = document.createElement('div')
     el.innerHTML = this.block.html
-    this.editor.setValue(decodeHTML(el.textContent))
+    this.editor.setValue(el.textContent)
     if (this.block.metadata && this.block.metadata.programmingLanguage) {
       this.mode = this.block.metadata.programmingLanguage
       if (this.selector) this.selector.value = this.block.metadata.programmingLanguage
