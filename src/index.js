@@ -52,7 +52,7 @@ export default class CEd {
     for (var i=0; i<modes.length;i++) {
       let option = document.createElement('option')
       option.value = modes[i]
-      option.innerText = modes[i]
+      option.textContent = modes[i]
       this.selector.appendChild(option)
     }
   }
