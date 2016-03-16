@@ -1,5 +1,5 @@
 import * as CodeMirror from 'codemirror'
-import {encodeHTML,decodeHTML} from 'entities'
+import {encodeXML, decodeHTML} from 'entities'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/monokai.css'
 
@@ -62,7 +62,7 @@ export default class CEd {
   }
 
   prepareHTML (code, mime) {
-    return '<pre><code class="' + this.mimeToMode(mime) + '">' + encodeHTML(code) + '</code></pre>'
+    return '<pre><code class="' + this.mimeToMode(mime) + '">' + encodeXML(code) + '</code></pre>'
   }
 
   set mode (mode) {
