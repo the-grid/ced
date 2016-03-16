@@ -1,4 +1,4 @@
-import {encode, decode} from 'he'
+import {encode} from 'he'
 encode.options.useNamedReferences = true
 
 import * as CodeMirror from 'codemirror'
