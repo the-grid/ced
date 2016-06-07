@@ -49,7 +49,7 @@ export default class CEd {
       this.onchanged(this.content)
     }.bind(this))
     let modes = Object.keys(CodeMirror.mimeModes)
-    for (var i=0; i<modes.length;i++) {
+    for (let i=0, len = modes.length; i < len; i++) {
       let option = document.createElement('option')
       option.value = modes[i]
       option.textContent = modes[i]
