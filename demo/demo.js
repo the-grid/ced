@@ -33,4 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
         break
     }
   });
+
+  document.getElementById('focus').addEventListener('click', function () {
+    iframe.postMessage({
+      topic: 'focus'
+    }, '*');
+  });
 });
