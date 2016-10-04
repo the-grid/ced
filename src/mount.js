@@ -16,14 +16,21 @@ function send (topic, id, payload) {
 
 document.addEventListener('DOMContentLoaded', function () {
   let ced = setup()
+
   let lastHeight = 0
-  ced.onchanged = function (block) {
-    send('changed', ced.id, block)
+  function checkHeight () {
     let height = ced.editor.getScrollInfo().height + 40
     if (height !== lastHeight) {
       send('height', ced.id, height)
       lastHeight = height
     }
+  }
+  // Send initial height
+  checkHeight()
+
+  ced.onchanged = function (block) {
+    send('changed', ced.id, block)
+    checkHeight()
   }
   window.addEventListener('message', function (message) {
     switch (message.data.topic) {
